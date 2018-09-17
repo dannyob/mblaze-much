@@ -7,7 +7,8 @@
 <find_panel_settings/>
 <vnodes>
 <v t="danny.20180916211857.3"><vh>Documentation</vh>
-<v t="danny.20180916202018.1"><vh>@auto-md /home/danny/Public/local_utilities/mblaze_utils/MANIFESTO.md</vh></v>
+<v t="danny.20180916202018.1"><vh>@auto-md MANIFESTO.md</vh></v>
+<v t="danny.20180916231930.1"><vh>@auto-md README.md</vh></v>
 </v>
 </vnodes>
 <tnodes>
