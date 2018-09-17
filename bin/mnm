@@ -1,0 +1,6 @@
+#!/bin/sh
+###
+# mnm - mblaze notmuch interface
+###
+
+notmuch search --output=files $* 

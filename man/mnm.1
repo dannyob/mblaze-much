@@ -1,0 +1,41 @@
+.Dd September 16, 2018
+.Dt MNM 1
+.Os
+.Sh NAME
+.Nm mnm
+.Nd search messages using notmuch query
+.Sh SYNOPSIS
+.Nm
+.Ar search-term
+.Sh DESCRIPTION
+.Nm
+uses
+.Xr notmuch-search 1
+to search mail, with
+.Ar search-term
+as the query.
+.sp
+The output is a list of filenames, one per line, suitable for piping to other
+.Xr mblaze 7
+utilities.
+.sp
+See
+.Xr notmuch-search-terms 7
+for the query syntax.
+.Sh EXIT STATUS
+.Ex -std
+.Sh SEE ALSO
+.Xr notmuch 1 ,
+.Xr mblaze 7
+.Sh AUTHORS
+.An Danny O'Brien Aq Mt danny@spesh.com
+.Sh LICENSE
+.Nm
+is in the public domain.
+.Pp
+To the extent possible under law,
+the creator of this work
+has waived all copyright and related or
+neighboring rights to this work.
+.Pp
+.Lk http://creativecommons.org/publicdomain/zero/1.0/
