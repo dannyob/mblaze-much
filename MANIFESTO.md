@@ -10,7 +10,7 @@ My goal with this project is to build a mail-handling system that is:
 * including future GUIs optimized for my own use case.
 
 I've settled on basing this around
-[mblaze](https://github.com/chneukirchen/mblaze), a modern command-line,
+[mblaze]( https://github.com/chneukirchen/mblaze ), a modern command-line,
 composable mail system in the tradition of
 [mh](https://en.wikipedia.org/wiki/MH_Message_Handling_System). Both mblaze and
 mh are mail user agents (MUAs), but do not present a terminal or GUI user
@@ -38,9 +38,9 @@ into the right location.
 I'm feeling overwhelmed with my email backlog, even using mutt. My preference
 would be to occasionally be able to take 40,000 feet view of my email, and to
 easily search it, but mostly concentrate on one email at a time. My goal is to
-take the new ideas in mblaze (which the author is still himself exploring), and
-apply them to my mail setup, adding new utilities to handle notmuch tagging and
-refiling and synchronizing email when I need to.
+take the new ideas in mblaze (which mblaze's author, Leah Neukirchen, is still
+exploring), and apply them to my mail setup, adding new utilities to handle
+notmuch tagging and refiling and synchronizing email when I need to.
 
 I have an interest in understanding and exploiting to the full the old school
 [Unix philosophy](https://en.wikipedia.org/wiki/Unix_philosophy) I feel myself
@@ -55,4 +55,3 @@ ways of managing their lives. But just as it is pleasant to play old music on
 old instruments, and even compose new music in old styles, I enjoy this
 challenge. Perhaps a little more than I enjoy reading and replying to emails in
 a timely fashion.
-
