@@ -1,5 +1,7 @@
 all : lint bin/mtag
 
+uncrustify:
+	uncrustify --no-backup --mtime --replace -c devel/uncrustify.cfg src/*.c
 
 bin/mtag : mtag.c
 

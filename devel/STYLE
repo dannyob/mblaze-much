@@ -1,0 +1,5 @@
+We match [notmuch's C
+style](https://git.notmuchmail.org/git?p=notmuch;a=blob_plain;f=devel/STYLE;hb=HEAD).
+Well, actually we match their [uncrustify.cfg](uncrustify.cfg), and endeavour
+not to fiddle beyond that. An automated style-format is preferred, even when it
+could be minorly improved with manual changes.

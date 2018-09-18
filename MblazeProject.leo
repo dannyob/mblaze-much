@@ -50,6 +50,7 @@ I don't seem to be the only one who thinks this! There was an IRC conversation j
 <t tx="danny.20180918002152.1">* fputs has the FILE argument at the end, fprintf has it at the beginning.
 * Clang-format is good for formatting, but there doesn't seem to be a way of it learning a new style from examples.
 * I really don't know how to write a Makefile. Still.
+* Uncrustify is a decent code formatter (which also has a limited way of deriving a configuration from sample code).
 </t>
 </tnodes>
 </leo_file>
