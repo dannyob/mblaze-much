@@ -1,7 +1,9 @@
+#include <ctype.h>
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #include <notmuch.h>
 char database_path[BUFSIZ];
@@ -17,11 +19,42 @@ find_database_path ()
     }
     pclose (fp);
     size_t l = strnlen (database_path, BUFSIZ);
-    if (l == 0) return 0;
+    if (l == 0) {
+	return 0;
+    }
     database_path[l - 1] = '\0';
-    return 1;
+    return -1;
 }
 
+/* Hex encode tags (see notmuch-tags(1) )
+ * The enc array must three times the the maximum size of the s array.
+ */
+
+void
+hex_encode (const char *s, char *enc)
+{
+    for (; (*enc = *s); enc++, s++) {
+	if ((*s == '"') || (*s == ' ') || (iscntrl (*s))) {
+	    sprintf ( enc, "%%%02X", *s);
+	    enc += 2;
+	}
+    }
+}
+
+void
+print_double_quoted (const char *s)
+{
+    putchar ('"');
+    for (; *s; s++) {
+	putchar (*s);
+	if (*s == '"') {
+	    putchar (*s);
+	}
+    }
+    putchar ('"');
+}
+
+char encoded_tag[3 * NOTMUCH_TAG_MAX];
 int
 main (int argc, char **argv)
 {
@@ -50,14 +83,18 @@ main (int argc, char **argv)
 	    fprintf (stderr, "Could not open %s\n", argv[i]);
 	    exit (EXIT_FAILURE);
 	}
-	printf ("%s :", argv[i]);
+
 	for (tags = notmuch_message_get_tags (message);
 	     notmuch_tags_valid (tags);
 	     notmuch_tags_move_to_next (tags)) {
-	    tag = notmuch_tags_get (tags); printf (" %s",  tag);
+	    tag = notmuch_tags_get (tags);
+	    hex_encode (tag, encoded_tag);
+	    printf ("+%s ",  encoded_tag);
 	}
-	notmuch_message_destroy (message);
+	printf ("-- id:");
+	print_double_quoted (notmuch_message_get_message_id (message));
 	puts ("");
+	notmuch_message_destroy (message);
     }
 
     notmuch_database_close (db);
