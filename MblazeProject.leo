@@ -11,6 +11,9 @@
 <v t="danny.20180916231930.1"><vh>@auto-md README.md</vh></v>
 </v>
 <v t="danny.20180917215709.1"><vh>Development Diary</vh>
+<v t="danny.20180920012943.1"><vh>2018-09-19</vh>
+<v t="danny.20180920012949.1"><vh>Things I've learned</vh></v>
+</v>
 <v t="danny.20180917215719.1"><vh>2018-09-17</vh>
 <v t="danny.20180917220033.1"><vh>22:00</vh></v>
 <v t="danny.20180917220056.1"><vh>22:01</vh></v>
@@ -51,6 +54,12 @@ I don't seem to be the only one who thinks this! There was an IRC conversation j
 * Clang-format is good for formatting, but there doesn't seem to be a way of it learning a new style from examples.
 * I really don't know how to write a Makefile. Still.
 * Uncrustify is a decent code formatter (which also has a limited way of deriving a configuration from sample code).
+</t>
+<t tx="danny.20180920012943.1"></t>
+<t tx="danny.20180920012949.1">* DevDocs is great for C documentation.
+* C constantly tempts you into concise, but unsafe forms (especially array bounds checking)
+* I don't like two braces straight after another in the same indent level.
+* Somebody should have decided on a single canonical way to escape text. Oh well.
 </t>
 </tnodes>
 </leo_file>
