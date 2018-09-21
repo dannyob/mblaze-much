@@ -9,6 +9,8 @@ My goal with this project is to build a mail-handling system that is:
 * all of which I will be able to access using multiple user-interfaces,
 * including future GUIs optimized for my own use case.
 
+* Stretch goal: implement the Buchheit rule -- every interaction <100ms
+
 I've settled on basing this around
 [mblaze]( https://github.com/chneukirchen/mblaze ), a modern command-line,
 composable mail system in the tradition of

@@ -11,6 +11,9 @@
 <v t="danny.20180916231930.1"><vh>@auto-md README.md</vh></v>
 </v>
 <v t="danny.20180917215709.1"><vh>Development Diary</vh>
+<v t="danny.20180920210004.1"><vh>2018-09-20</vh>
+<v t="danny.20180920210010.1"><vh>Things I've learned</vh></v>
+</v>
 <v t="danny.20180920012943.1"><vh>2018-09-19</vh>
 <v t="danny.20180920012949.1"><vh>Things I've learned</vh></v>
 </v>
@@ -61,5 +64,12 @@ I don't seem to be the only one who thinks this! There was an IRC conversation j
 * I don't like two braces straight after another in the same indent level.
 * Somebody should have decided on a single canonical way to escape text. Oh well.
 </t>
+<t tx="danny.20180920210004.1"></t>
+<t tx="danny.20180920210010.1">* fgets and gets, and such are kind of a mess in how they handle '\r' and bounds checking. I wonder what the history is there?
+* It's still pretty hard to find simple versions of common C tricks online. For instance:
+     buffer[strcspn (buffer, "\r\n")] = 0;
+  looks like an acceptable way to strip EOL chars from a fgets,  but it took me a while to find it. Useful function though!
+* Rather than load up complexity in the binary I'm writing, I'm going to split it into two smaller utilities. LIVIN' LA VIDA http://harmful.cat-v.org/cat-v/unix_prog_design.pdf
+* I realised that one of the niggles I have with mutt is that it feels perceptually slow, especially when I'm dealing with filing lots of mail. I'm going to try to keep to Paul Buchheit's maxim of sub-100ms interaction. I think that's about 10K of lines printed on kitty, the fast terminal I use these days. Maybe doable?</t>
 </tnodes>
 </leo_file>
