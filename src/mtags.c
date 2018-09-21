@@ -55,6 +55,7 @@ print_double_quoted (const char *s)
 }
 
 char encoded_tag[3 * NOTMUCH_TAG_MAX];
+char pathname[4096];
 int
 main (int argc, char **argv)
 {
@@ -77,11 +78,17 @@ main (int argc, char **argv)
 	exit (errno);
     }
 
-    for (int i = 1; i < argc; i++) {
-	st = notmuch_database_find_message_by_filename (db, argv[i], &message);
+    while (fgets (pathname, sizeof pathname, stdin)) {
+	pathname[strcspn (pathname, "\r\n")] = 0; /* chomps off EOL characters */
+	st = notmuch_database_find_message_by_filename (db, pathname, &message);
 	if (st != NOTMUCH_STATUS_SUCCESS || message == NULL) {
-	    fprintf (stderr, "Could not open %s\n", argv[i]);
+	    fprintf (stderr, "Could not open %s\n", pathname);
 	    exit (EXIT_FAILURE);
+	}
+
+	if (ferror (stdin)) {
+	    perror ("Could not read from input");
+	    exit (errno);
 	}
 
 	for (tags = notmuch_message_get_tags (message);
