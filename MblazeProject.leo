@@ -11,6 +11,9 @@
 <v t="danny.20180916231930.1"><vh>@auto-md README.md</vh></v>
 </v>
 <v t="danny.20180917215709.1"><vh>Development Diary</vh>
+<v t="danny.20180921195629.1"><vh>2018-09-21</vh>
+<v t="danny.20180921213841.1"><vh>Things I've learned</vh></v>
+</v>
 <v t="danny.20180920210004.1"><vh>2018-09-20</vh>
 <v t="danny.20180920210010.1"><vh>Things I've learned</vh></v>
 </v>
@@ -71,5 +74,12 @@ I don't seem to be the only one who thinks this! There was an IRC conversation j
   looks like an acceptable way to strip EOL chars from a fgets,  but it took me a while to find it. Useful function though!
 * Rather than load up complexity in the binary I'm writing, I'm going to split it into two smaller utilities. LIVIN' LA VIDA http://harmful.cat-v.org/cat-v/unix_prog_design.pdf
 * I realised that one of the niggles I have with mutt is that it feels perceptually slow, especially when I'm dealing with filing lots of mail. I'm going to try to keep to Paul Buchheit's maxim of sub-100ms interaction. I think that's about 10K of lines printed on kitty, the fast terminal I use these days. Maybe doable?</t>
+<t tx="danny.20180921195629.1"></t>
+<t tx="danny.20180921213841.1">* Breaking these down into little utilities was a good idea. Things have got simpler, and also I may be able to more easily remove extra cruft in the future.
+* Writing getopt with short options and a terse usage statement feels like I'm in 70s Unix re-enactment society. Not in a bad way!
+* Drafting manpages is harder than it looks -- or perhaps, exactly as hard as it looks. I feel I may have fallen into a trap using mandoc, but right now it seems much clearer than the old man macros.
+* I hope someone is recording the oral history of UNIX before we start losing the memories.
+* I do love git-cola! https://git-cola.github.io/
+</t>
 </tnodes>
 </leo_file>
