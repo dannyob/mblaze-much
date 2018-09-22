@@ -4,8 +4,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 #include <notmuch.h>
+
+const char usage[] = "Usage: mtags [-th]\n\
+    -t \tformat for input to notmuch-tags\n\
+    -h \tshow this message\n";
+
 char database_path[BUFSIZ];
 
 int
@@ -63,7 +69,32 @@ main (int argc, char **argv)
     notmuch_status_t st;
     notmuch_message_t *message;
     notmuch_tags_t *tags;
+    bool format_notmuch_tags = false;
     const char *tag;
+    char c;
+
+    while ((c = getopt (argc, argv, "th")) != -1)
+	switch (c) {
+	case 't':
+	    format_notmuch_tags = true;
+	    break;
+
+	case 'h':
+	    fprintf (stderr, usage);
+	    exit (EXIT_SUCCESS);
+	    break;
+
+	case '?':
+	    if (isprint (optopt))
+		fprintf (stderr, "Unknown option `-%c'.\n", optopt);
+	    else
+		fprintf (stderr,
+			 "Unknown option character `\\x%x'.\n",
+			 optopt);
+	    exit (EXIT_FAILURE);
+	default:
+	    abort ();
+	}
 
     errno = 0;
     if (! find_database_path ()) {
@@ -96,10 +127,17 @@ main (int argc, char **argv)
 	     notmuch_tags_move_to_next (tags)) {
 	    tag = notmuch_tags_get (tags);
 	    hex_encode (tag, encoded_tag);
-	    printf ("+%s ",  encoded_tag);
+	    if (format_notmuch_tags) {
+		printf ("+%s ",  encoded_tag);
+	    } else {
+		printf ("%s ", encoded_tag);
+	    }
+
 	}
-	printf ("-- id:");
-	print_double_quoted (notmuch_message_get_message_id (message));
+	if (format_notmuch_tags) {
+	    printf ("-- id:");
+	    print_double_quoted (notmuch_message_get_message_id (message));
+	}
 	puts ("");
 	notmuch_message_destroy (message);
     }
