@@ -11,6 +11,9 @@
 <v t="danny.20180916231930.1"><vh>@auto-md README.md</vh></v>
 </v>
 <v t="danny.20180917215709.1"><vh>Development Diary</vh>
+<v t="danny.20180922151113.1"><vh>2018-09-22</vh>
+<v t="danny.20180922220930.1"><vh>Things I've learned</vh></v>
+</v>
 <v t="danny.20180921195629.1"><vh>2018-09-21</vh>
 <v t="danny.20180921213841.1"><vh>Things I've learned</vh></v>
 </v>
@@ -79,7 +82,22 @@ I don't seem to be the only one who thinks this! There was an IRC conversation j
 * Writing getopt with short options and a terse usage statement feels like I'm in 70s Unix re-enactment society. Not in a bad way!
 * Drafting manpages is harder than it looks -- or perhaps, exactly as hard as it looks. I feel I may have fallen into a trap using mandoc, but right now it seems much clearer than the old man macros.
 * I hope someone is recording the oral history of UNIX before we start losing the memories.
+* I am so slow at this!
 * I do love git-cola! https://git-cola.github.io/
 </t>
+<t tx="danny.20180922151113.1">Exciting developments!
+I've come up with some small scripts to do useful things!
+
+Ooh i'm getting into serious stuff now. I want to use some of mblaze's parsing cleverness, which means linking an object library to my c code. I HAVE NO IDEA WHAT I'M DOING.
+
+i have no idea about the right way to refer to someone else's source code. Do I just copy it across? Do some sort of git submodule? Have a vendor directory, or just symlink it and then apologise in the readme?
+
+I guess maybe git submodules for now? https://blog.github.com/2016-02-01-working-with-submodules/
+
+Oh boy I guess I can fix this later right?
+
+</t>
+<t tx="danny.20180922220930.1">I learned a lot about mblaze! I learned that most of the magic of parsing of mmsgs is probably embedded in blaze822.c and seq.c!
+I started getting good at small one-liners.</t>
 </tnodes>
 </leo_file>
