@@ -19,27 +19,33 @@ function nn {
 }
 
 function minbox() {
-    #
+    # minbox - mblaze my inbox
     # find everything in the notmuch "inbox", and store it in the default sequence
-    notmuch search --output=files tag:inbox | mseq -S
+    notmuch search --output=files tag:inbox | msort -r -d -U | mseq -S
 }
 
-function march() {
-    # mark as archived (mails tagged archive get moved out of my Maildir Inbox by a utility called afew)
-    if [ -t 0 ]; then
-        # we don't want to accidentally archive everything in the sequence
-        mseq ${*:-.} | mtags -t | sed 's/+inbox/-inbox +archive/' | notmuch tag --batch
-    else
-        mtags -t | sed 's/+inbox/-inbox +archive/' | notmuch tag --batch
-    fi
+function mflag() {
+    # mflag - toggle 'important' flag
+    mbatchtag "awk '/+flagged/ { sub(/+flagged/,\"-flagged\"); print; next}; !/+flagged/ { printf \"+flagged \";print; next }' " $*
 }
 
 function mspam() {
     # mark as spam (mails tagged spam get moved out of my Maildir Inbox into a spam folder by a utility called afew)
+    mbatchtag "sed 's/+inbox/-inbox +spam +missedspam/'" $*
+}
+
+function march() {
+    # mark as archived (mails tagged archive get moved out of my Maildir Inbox by a utility called afew)
+    mbatchtag "sed 's/+inbox/-inbox +archive/'" $*
+}
+
+function mbatchtag() {
+    action=$1
+    shift
     if [ -t 0 ]; then
-        # we don't want to accidentally mark as spam everything in the sequence
-        mseq ${*:-.} |mtags -t | sed 's/+inbox/-inbox +spam +missedspam/' | notmuch tag --batch
+        # we don't want to accidentally action all the things if don't give another argument
+        mseq ${*:-.} |mtags -t | eval $action | notmuch tag --batch
     else
-        mtags -t | sed 's/+inbox/-inbox +spam +missedspam/' | notmuch tag --batch
+        mtags -t | eval $action | notmuch tag --batch
     fi
 }
