@@ -3,7 +3,7 @@
 .Os
 .Sh NAME
 .Nm mtags
-.Nd list tags of messages.
+.Nd list tags of messages
 .Sh SYNOPSIS
 .Nm
 .Op Fl t
@@ -14,20 +14,19 @@
 .Nm
 lists the
 .Xr notmuch 1
-tags for messages. It reads the filenames of the messages from the standard
-input, and outputs its tags on standard output, separated by spaces.
+tags for messages.
+It reads the filenames of the messages from the standard input, and outputs its tags on standard output, separated by spaces.
 .Pp
 The options are as follows:
 .Bl -tag -width -indent
-.Pp
 .It Fl t
 List the tags in a form suitable for feeding to
-.Xr notmuch-tags 1
-as a batch file. It will prefix each tag with a plus sign, and add '--'
-followed by a search term that matches the message to the end of the line. This can be altered with, for example,
+.Xr notmuch-tag 1
+as a batch file.
+It will prefix each tag with a plus sign, and add '--' followed by a search term that matches the message to the end of the line.
+This can be altered with, for example,
 .Xr sed 1
 , to add or remove tags.
-.Pp
 .It Fl h
 Output usage guidance.
 .El

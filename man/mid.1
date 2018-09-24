@@ -3,7 +3,7 @@
 .Os
 .Sh NAME
 .Nm mid
-.Nd list message ID of files.
+.Nd list message ID of files
 .Sh SYNOPSIS
 .Nm
 <
@@ -12,8 +12,9 @@
 .Nm
 uses the
 .Xr notmuch 1
-database to find the message ID of a filename. It reads the filenames of the messages from the standard
-input, and outputs the message ID on standard output. The message ID is prefixed with the "id:", and escaped in accordance with Xapian search query escaping, allowing it to be easily piped into other
+database to find the message ID of a filename.
+It reads the filenames of the messages from the standard input, and outputs the message ID on standard output.
+The message ID is prefixed with the "id:", and escaped in accordance with Xapian search query escaping, allowing it to be easily piped into other
 .Xr notmuch 1
 utilities.
 .Sh EXIT STATUS
