@@ -11,6 +11,9 @@
 <v t="danny.20180916231930.1"><vh>@auto-md README.md</vh></v>
 </v>
 <v t="danny.20180917215709.1"><vh>Development Diary</vh>
+<v t="danny.20180923183436.1"><vh>2018-09-23</vh>
+<v t="danny.20180923183439.1"><vh>Things I've learned</vh></v>
+</v>
 <v t="danny.20180922151113.1"><vh>2018-09-22</vh>
 <v t="danny.20180922220930.1"><vh>Things I've learned</vh></v>
 </v>
@@ -99,5 +102,10 @@ Oh boy I guess I can fix this later right?
 </t>
 <t tx="danny.20180922220930.1">I learned a lot about mblaze! I learned that most of the magic of parsing of mmsgs is probably embedded in blaze822.c and seq.c!
 I started getting good at small one-liners.</t>
+<t tx="danny.20180923183436.1"></t>
+<t tx="danny.20180923183439.1">* eval in shell scripts isn't quite as bad as eval in every other language (maybe because /everything/ in shell scripts is like eval in other languages).
+* I wonder how much easier environments would be to learn if you learned them in historical order. Remembering sci-fi stories of code archaeologists.
+* I'm already collecting a bunch of one-liner recipers that are unique to my setup. It's hard to convey these; I think Unix culture could have done with a better way of passing these one-liners onto new people.
+</t>
 </tnodes>
 </leo_file>
