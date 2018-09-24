@@ -1,24 +1,26 @@
-binaries : bin/mtag bin/mid
+binaries : bin/mtags bin/mid
 
 all: uncrustify lint binaries
+
+leo:
+	git add MblazeProject.leo
+	git commit  -m "Update Leo project."
 
 uncrustify:
 	uncrustify --no-backup --mtime --replace -c devel/uncrustify.cfg src/*.c
 
-bin/mtag : mtag.c
-
-bin/mid : mid.c
-
-mtag.c:
+bin/mtags : src/mtags.c
 	cc src/mtags.c -lnotmuch -o bin/mtags
-	
-mid.c:
+
+bin/mid : src/mid.c
 	cc src/mid.c -lnotmuch -o bin/mid
 
 lint: lintmd lintman
 
 lintmd:
+	# See https://github.com/igorshubovych/markdownlint-cli and
+	# https://github.com/tcort/markdown-link-check
 	find . -name "*.md" -exec "markdownlint" "{}" ";" -exec "markdown-link-check" "{}" ";"
 
 lintman: 
-	mandoc -T lint man/mnm.1
+	mandoc -T lint man/*.1
