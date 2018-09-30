@@ -22,7 +22,9 @@ function ms() {
 function nn {
     # nn - fast notmuch new
     # run notmuch and afew quietly and quickly, to respond to file changes made by mblaze
-    afew -m; notmuch new --no-hooks --quiet
+    # (my notmuch hooks get new mail, unless DONOTSYNC is set)
+    DONOTSYNC=1 afew -t tag:inbox
+    DONOTSYNC=1 afew -m tag:inbox
 }
 
 function minbox() {
