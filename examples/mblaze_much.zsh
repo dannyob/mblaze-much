@@ -12,6 +12,13 @@ function mnm() {
     notmuch search --output=files $*
 }
 
+function ms() {
+    # ms - mshow with tags
+    # shortcut to show current email with tags appended
+    mshow $*
+    mseq . | mtags
+}
+
 function nn {
     # nn - fast notmuch new
     # run notmuch and afew quietly and quickly, to respond to file changes made by mblaze
@@ -22,6 +29,11 @@ function minbox() {
     # minbox - mblaze my inbox
     # find everything in the notmuch "inbox", and store it in the default sequence
     notmuch search --output=files tag:inbox | msort -r -d -U | mseq -S
+}
+
+function mtoday() {
+    # mtoday - focus on today's email
+    notmuch search --output=files tag:inbox AND date:today | msort -r -d -U | mseq -S
 }
 
 function mflag() {
@@ -37,6 +49,12 @@ function mspam() {
 function march() {
     # mark as archived (mails tagged archive get moved out of my Maildir Inbox by a utility called afew)
     mbatchtag "sed 's/+inbox/-inbox +archive/'" $*
+}
+
+function mt() {
+    # find all in same thread as this email
+    # uses notmuch's threading knowledge, not mblaze's
+    mnm `notmuch search --output=threads $(mseq ${*:-.} | mid)`
 }
 
 function mbatchtag() {
