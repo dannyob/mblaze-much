@@ -11,6 +11,15 @@
 <v t="danny.20180916231930.1"><vh>@auto-md README.md</vh></v>
 </v>
 <v t="danny.20180917215709.1"><vh>Development Diary</vh>
+<v t="danny.20180930152544.1"><vh>2018-09-30</vh>
+<v t="danny.20180930152827.1"><vh>Things I've learned</vh></v>
+</v>
+<v t="danny.20180926223521.1"><vh>2018-09-26</vh>
+<v t="danny.20180926223528.1"><vh>Things I've learned</vh></v>
+</v>
+<v t="danny.20180925222102.1"><vh>2018-09-25</vh>
+<v t="danny.20180925222106.1"><vh>Things I've learned</vh></v>
+</v>
 <v t="danny.20180923183436.1"><vh>2018-09-23</vh>
 <v t="danny.20180923183439.1"><vh>Things I've learned</vh></v>
 </v>
@@ -107,5 +116,15 @@ I started getting good at small one-liners.</t>
 * I wonder how much easier environments would be to learn if you learned them in historical order. Remembering sci-fi stories of code archaeologists.
 * I'm already collecting a bunch of one-liner recipers that are unique to my setup. It's hard to convey these; I think Unix culture could have done with a better way of passing these one-liners onto new people.
 </t>
+<t tx="danny.20180925222102.1"></t>
+<t tx="danny.20180925222106.1">* 'local' in shell functions is useful!
+* libphonenumbers, https://github.com/openvenues/libpostal, https://github.com/daviddrysdale/python-phonenumbers for my email2vcard tool
+* if you put an "=" in front of a command in zsh, it works like `which command`</t>
+<t tx="danny.20180926223521.1"></t>
+<t tx="danny.20180926223528.1">* my notmuch new hooks call afew, which itself calls "notmuch new", which is re-entrantly annoying
+* I think I finally understand the difference between say .zshprofile (which is read in shells that are executing scripts) and .zshrc which is run only when there's an interactive (you typing at it) shell.
+* </t>
+<t tx="danny.20180930152544.1"></t>
+<t tx="danny.20180930152827.1"></t>
 </tnodes>
 </leo_file>
