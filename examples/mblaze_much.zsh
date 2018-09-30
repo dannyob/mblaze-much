@@ -62,7 +62,7 @@ function mbatchtag() {
     shift
     if [ -t 0 ]; then
         # we don't want to accidentally action all the things if don't give another argument
-        mseq ${*:-.} |mtags -t | eval $action | notmuch tag --batch
+        mseq -f ${*:-.} |mtags -t | eval $action | notmuch tag --batch
     else
         mtags -t | eval $action | notmuch tag --batch
     fi
