@@ -6,6 +6,10 @@ leo:
 	git add MblazeProject.leo
 	git commit  -m "Update Leo project."
 
+vendor-mblaze:
+	git clone git@github.com:chneukirchen/mblaze.git vendor-mblaze
+	(cd vendor-mblaze ; make)
+
 uncrustify:
 	uncrustify --no-backup --mtime --replace -c devel/uncrustify.cfg src/*.c
 
