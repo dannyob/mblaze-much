@@ -11,9 +11,10 @@
 <v t="danny.20180916231930.1"><vh>@auto-md README.md</vh></v>
 </v>
 <v t="danny.20180917215709.1"><vh>Development Diary</vh>
-<v t="danny.20180930152544.1"><vh>2018-09-30</vh>
-<v t="danny.20180930152827.1"><vh>Things I've learned</vh></v>
+<v t="danny.20181001222640.1"><vh>2018-10-01</vh>
+<v t="danny.20181001222651.1"><vh>Things I've learned</vh></v>
 </v>
+<v t="danny.20180930152544.1"><vh>2018-09-30</vh></v>
 <v t="danny.20180926223521.1"><vh>2018-09-26</vh>
 <v t="danny.20180926223528.1"><vh>Things I've learned</vh></v>
 </v>
@@ -46,6 +47,8 @@
 <v t="danny.20180917220237.1"><vh>Write a patch for notmuch to output tags for a filename</vh>
 <v t="danny.20180917220056.1"></v>
 </v>
+<v t="danny.20181001222808.1"><vh>Write makefile so that vendor-mblaze is automatically filled out.</vh></v>
+<v t="danny.20181001223655.1"><vh>Make makefile a bit more sane</vh></v>
 </v>
 </vnodes>
 <tnodes>
@@ -70,7 +73,7 @@ I don't seem to be the only one who thinks this! There was an IRC conversation j
 <t tx="danny.20180917220225.1"></t>
 <t tx="danny.20180917220237.1">I think the best way to do this is to add to the query syntax, file:&lt;filename&gt;.
 </t>
-<t tx="danny.20180918001828.1"></t>
+<t tx="danny.20180918001828.1" annotate="7d71002855087072696f7269747971014b64550a707269736574646174657102550a323031382d31302d30317103752e" icons="5d71007d71012855026f6e71025505766e6f646571035504747970657104550466696c6571055507796f666673657471064b005508636c656f49636f6e710755013171086805585b0000002f7573722f6c6f63616c2f6c69622f707974686f6e322e372f646973742d7061636b616765732f6c656f2d352e372e322e6465763438362d7079322e372e6567672f6c656f2f49636f6e732f636c656f2f63686b626c6b2e706e677109550478706164710a4b0155057768657265710b550e6265666f7265486561646c696e65710c5507786f6666736574710d4b02550772656c50617468710e580f000000636c656f2f63686b626c6b2e706e67710f75612e"></t>
 <t tx="danny.20180918002152.1">* fputs has the FILE argument at the end, fprintf has it at the beginning.
 * Clang-format is good for formatting, but there doesn't seem to be a way of it learning a new style from examples.
 * I really don't know how to write a Makefile. Still.
@@ -125,6 +128,12 @@ I started getting good at small one-liners.</t>
 * I think I finally understand the difference between say .zshprofile (which is read in shells that are executing scripts) and .zshrc which is run only when there's an interactive (you typing at it) shell.
 * </t>
 <t tx="danny.20180930152544.1"></t>
-<t tx="danny.20180930152827.1"></t>
+<t tx="danny.20181001222640.1"></t>
+<t tx="danny.20181001222651.1">I learned a bit more about Makefile -- mainly that it has many magical secret defaults that most makefiles rely on.
+I still haven't really worked out how to do vendor code (or rather use other people's code).
+</t>
+<t tx="danny.20181001222808.1" annotate="7d71002855087072696f7269747971014b64550a707269736574646174657102550a323031382d31302d30317103752e" icons="5d71007d71012855026f6e71025505766e6f646571035504747970657104550466696c6571055507796f666673657471064b005508636c656f49636f6e710755013171086805585b0000002f7573722f6c6f63616c2f6c69622f707974686f6e322e372f646973742d7061636b616765732f6c656f2d352e372e322e6465763438362d7079322e372e6567672f6c656f2f49636f6e732f636c656f2f63686b626c6b2e706e677109550478706164710a4b0155057768657265710b550e6265666f7265486561646c696e65710c5507786f6666736574710d4b02550772656c50617468710e580f000000636c656f2f63686b626c6b2e706e67710f75612e"></t>
+<t tx="danny.20181001223655.1">Make vendor-mblaze do something clever other than checking out and making code.
+Use makefile defaults wisely.</t>
 </tnodes>
 </leo_file>
