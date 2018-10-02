@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include "blaze822.h"
 
 #include <notmuch.h>
 
@@ -62,15 +63,47 @@ print_double_quoted (const char *s)
 
 char encoded_tag[3 * NOTMUCH_TAG_MAX];
 char pathname[4096];
-int
-main (int argc, char **argv)
+bool format_notmuch_tags = false;
+notmuch_database_t *db;
+
+void
+mtag(char *file)
 {
-    notmuch_database_t *db;
     notmuch_status_t st;
     notmuch_message_t *message;
     notmuch_tags_t *tags;
-    bool format_notmuch_tags = false;
     const char *tag;
+
+	st = notmuch_database_find_message_by_filename (db, file, &message);
+	if (st != NOTMUCH_STATUS_SUCCESS || message == NULL) {
+	    fprintf (stderr, "Could not open %s\n", pathname);
+	    exit (EXIT_FAILURE);
+	}
+
+	for (tags = notmuch_message_get_tags (message);
+	     notmuch_tags_valid (tags);
+	     notmuch_tags_move_to_next (tags)) {
+	    tag = notmuch_tags_get (tags);
+	    hex_encode (tag, encoded_tag);
+	    if (format_notmuch_tags) {
+		printf ("+%s ",  encoded_tag);
+	    } else {
+		printf ("%s ", encoded_tag);
+	    }
+
+	}
+	if (format_notmuch_tags) {
+	    printf ("-- id:");
+	    print_double_quoted (notmuch_message_get_message_id (message));
+	}
+	puts ("");
+	notmuch_message_destroy (message);
+}
+
+int
+main (int argc, char **argv)
+{
+    notmuch_status_t st;
     char c;
 
     while ((c = getopt (argc, argv, "th")) != -1)
@@ -109,39 +142,12 @@ main (int argc, char **argv)
 	exit (errno);
     }
 
-    while (fgets (pathname, sizeof pathname, stdin)) {
-	pathname[strcspn (pathname, "\r\n")] = 0; /* chomps off EOL characters */
-	st = notmuch_database_find_message_by_filename (db, pathname, &message);
-	if (st != NOTMUCH_STATUS_SUCCESS || message == NULL) {
-	    fprintf (stderr, "Could not open %s\n", pathname);
-	    exit (EXIT_FAILURE);
-	}
-
-	if (ferror (stdin)) {
-	    perror ("Could not read from input");
-	    exit (errno);
-	}
-
-	for (tags = notmuch_message_get_tags (message);
-	     notmuch_tags_valid (tags);
-	     notmuch_tags_move_to_next (tags)) {
-	    tag = notmuch_tags_get (tags);
-	    hex_encode (tag, encoded_tag);
-	    if (format_notmuch_tags) {
-		printf ("+%s ",  encoded_tag);
-	    } else {
-		printf ("%s ", encoded_tag);
-	    }
-
-	}
-	if (format_notmuch_tags) {
-	    printf ("-- id:");
-	    print_double_quoted (notmuch_message_get_message_id (message));
-	}
-	puts ("");
-	notmuch_message_destroy (message);
-    }
+	if (argc == optind && isatty(0))
+		blaze822_loop1(":", mtag);
+	else
+		blaze822_loop(argc-optind, argv+optind, mtag);
 
     notmuch_database_close (db);
     exit (EXIT_SUCCESS);
+
 }

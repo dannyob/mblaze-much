@@ -16,7 +16,7 @@ function ms() {
     # ms - mshow with tags
     # shortcut to show current email with tags appended
     mshow $*
-    mseq . | mtags
+    mtags .
 }
 
 function nn {
@@ -64,7 +64,7 @@ function mbatchtag() {
     shift
     if [ -t 0 ]; then
         # we don't want to accidentally action all the things if don't give another argument
-        mseq -f ${*:-.} |mtags -t | eval $action | notmuch tag --batch
+        mtags -t ${*:-.} | eval $action | notmuch tag --batch
     else
         mtags -t | eval $action | notmuch tag --batch
     fi
