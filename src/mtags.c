@@ -67,37 +67,37 @@ bool format_notmuch_tags = false;
 notmuch_database_t *db;
 
 void
-mtag(char *file)
+mtag (char *file)
 {
     notmuch_status_t st;
     notmuch_message_t *message;
     notmuch_tags_t *tags;
     const char *tag;
 
-	st = notmuch_database_find_message_by_filename (db, file, &message);
-	if (st != NOTMUCH_STATUS_SUCCESS || message == NULL) {
-	    fprintf (stderr, "Could not open %s\n", pathname);
-	    exit (EXIT_FAILURE);
-	}
+    st = notmuch_database_find_message_by_filename (db, file, &message);
+    if (st != NOTMUCH_STATUS_SUCCESS || message == NULL) {
+	fprintf (stderr, "Could not open %s\n", pathname);
+	exit (EXIT_FAILURE);
+    }
 
-	for (tags = notmuch_message_get_tags (message);
-	     notmuch_tags_valid (tags);
-	     notmuch_tags_move_to_next (tags)) {
-	    tag = notmuch_tags_get (tags);
-	    hex_encode (tag, encoded_tag);
-	    if (format_notmuch_tags) {
-		printf ("+%s ",  encoded_tag);
-	    } else {
-		printf ("%s ", encoded_tag);
-	    }
-
-	}
+    for (tags = notmuch_message_get_tags (message);
+	 notmuch_tags_valid (tags);
+	 notmuch_tags_move_to_next (tags)) {
+	tag = notmuch_tags_get (tags);
+	hex_encode (tag, encoded_tag);
 	if (format_notmuch_tags) {
-	    printf ("-- id:");
-	    print_double_quoted (notmuch_message_get_message_id (message));
+	    printf ("+%s ",  encoded_tag);
+	} else {
+	    printf ("%s ", encoded_tag);
 	}
-	puts ("");
-	notmuch_message_destroy (message);
+
+    }
+    if (format_notmuch_tags) {
+	printf ("-- id:");
+	print_double_quoted (notmuch_message_get_message_id (message));
+    }
+    puts ("");
+    notmuch_message_destroy (message);
 }
 
 int
@@ -142,10 +142,10 @@ main (int argc, char **argv)
 	exit (errno);
     }
 
-	if (argc == optind && isatty(0))
-		blaze822_loop1(":", mtag);
-	else
-		blaze822_loop(argc-optind, argv+optind, mtag);
+    if (argc == optind && isatty (0))
+	blaze822_loop1 (":", mtag);
+    else
+	blaze822_loop (argc - optind, argv + optind, mtag);
 
     notmuch_database_close (db);
     exit (EXIT_SUCCESS);
