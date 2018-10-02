@@ -8,14 +8,21 @@
 .Nm
 .Op Fl t
 .Op Fl h
-<
-.Ar sequence
+.Op Ar msg
+.Op Ar <sequence
 .Sh DESCRIPTION
 .Nm
 lists the
 .Xr notmuch 1
 tags for messages.
-It reads the filenames of the messages from the standard input, and outputs its tags on standard output, separated by spaces.
+It reads the filenames of the messages from the standard input, or uses an
+.Xr mmsg 7
+specified
+.Ar msg
+and outputs those messages' notmuch tags on standard output, separated by spaces.
+If there are no filenames on standard input and no message specification, it outputs the tags of the current sequence (see
+.Xr mseq 1
+).
 .Pp
 The options are as follows:
 .Bl -tag -width -indent
@@ -33,6 +40,7 @@ Output usage guidance.
 .Sh EXIT STATUS
 .Ex -std
 .Sh SEE ALSO
+.Xr mseq 1 ,
 .Xr notmuch 1 ,
 .Xr mblaze 7
 .Sh AUTHORS
