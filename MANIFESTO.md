@@ -26,16 +26,16 @@ Mblaze expects emails to be stored in the Maildir format, which I already use;
 however I also organize my mail using [notmuch](https://notmuchmail.org/), a
 Maildir-compatible, tag-based indexing and search system. For many years, I've
 worked with all of these tools using a patched version of mutt which creates
-"virtual mailbozes" out of notmuch queries. So, for instance, when I start up
+"virtual mailboxes" out of notmuch queries. So, for instance, when I start up
 mutt, it shows me an inbox of all my mail that is made up of any mail that has
 the tag "inbox" in the Notmuch database. Notmuch can find mail in any number of
 Maildir locations. To keep everything compatible with less weird set-ups, I
-keep my Maildir folders, which are stored in separate directories, synchronized
-with my tags -- everything tagged with "inbox" should be in my INBOX mail
-directory, stuff archived in the "archive2018" mail directory should be tagged
-"archive2018", etc. At least in theory. Currently I use yet another utility
-called [afew](https://github.com/afewmail/afew) to automatically move emails
-into the right location.
+keep my Maildir folders, synchronized with my tags -- everything tagged with
+"inbox" should be in my INBOX mail directory, stuff archived in the
+"archive2018" mail directory should be tagged "archive2018", etc. At least in
+theory. Currently I use yet another utility called
+[afew](https://github.com/afewmail/afew) to automatically move emails into the
+right location.
 
 I'm feeling overwhelmed with my email backlog, even using mutt. My preference
 would be to occasionally be able to take 40,000 feet view of my email, and to
@@ -45,15 +45,15 @@ exploring), and apply them to my mail setup, adding new utilities to handle
 notmuch tagging and refiling and synchronizing email when I need to.
 
 I have an interest in understanding and exploiting to the full the old school
-[Unix philosophy](https://en.wikipedia.org/wiki/Unix_philosophy) I feel myself
-moving towards in the later decades of my life. I would like to leave the world
-with my emails tidily sorted, in a documented archive format, on a platform I
-have been securely and comfortably using for many years.
+[Unix philosophy](https://en.wikipedia.org/wiki/Unix_philosophy) that I feel
+myself moving towards in the later decades of my life. I would like to leave
+the world with my emails tidily sorted, in a documented archive format, on a
+platform I have been securely and comfortably using for many years.
 
 I am a little skeptical of my motives in, and my chances of, creating a perfect
-email system using just the commmand line and an idiosyncratic wiring of
+email system using just the command line and an idiosyncratic wiring of
 multiple utilities. Even the creators of the "Unix way" have moved on to other
 ways of managing their lives. But just as it is pleasant to play old music on
-old instruments, and even compose new music in old styles, I enjoy this
-challenge. Perhaps a little more than I enjoy reading and replying to emails in
-a timely fashion.
+old instruments, and even compose new music in old styles, I am enjoying this
+challenge -- perhaps a little more than I enjoy reading and replying to emails
+in a timely fashion.
