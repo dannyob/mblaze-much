@@ -34,8 +34,8 @@ function minbox() {
 }
 
 function mtoday() {
-    # mtoday - focus on today's email
-    notmuch search --output=files tag:inbox AND date:today | msort -r -d -U | mseq -S
+    # mtoday - focus on today's email (I have a broad view of 'today')
+    notmuch search --output=files "tag:inbox AND ( date:today OR date:yesterday )" | msort -r -d -U | mseq -S
 }
 
 function mflag() {
