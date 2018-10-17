@@ -69,3 +69,16 @@ function mbatchtag() {
         mtags -t | eval $action | notmuch tag --batch
     fi
 }
+
+function mcp () {
+    # run commands on a variety of searches (defaults to giving a count)
+    while read -u9 -n line ; do
+        command=`echo $line| sed 's/#.*$//'`
+        echo -n $command
+        eval "$command | ${*:-wc -l}"
+    done 9<<EOF
+magrep "Precedence:bulk"         # mass mails
+magrep "broadcastSendId:.*"      # mass mails
+magrep "Feedback-ID:.*"          # mass mails
+EOF
+}
