@@ -6,20 +6,20 @@
 # gets moved into an archive folder. Similarly, mail marked "spam" get moved to
 # a spam folder.
 
-mnm() {
+mnm () {
     # mnm - mblaze notmuch
     # search and return a list of files, suitable for mblaze functions
     notmuch search --output=files $*
 }
 
-ms() {
+ms () {
     # ms - mshow with tags
     # shortcut to show current email with tags appended
     mshow $*
     mtags .
 }
 
-nn {
+nn () {
     # nn - fast notmuch new
     # run notmuch and afew quietly and quickly, to respond to file changes made by mblaze
     # (my notmuch hooks get new mail, unless DONOTSYNC is set)
@@ -27,39 +27,39 @@ nn {
     DONOTSYNC=1 afew -m tag:inbox
 }
 
-minbox() {
+minbox () {
     # minbox - mblaze my inbox
     # find everything in the notmuch "inbox", and store it in the default sequence
     notmuch search --output=files tag:inbox | msort -r -d -U | mseq -S
 }
 
-mtoday() {
+mtoday () {
     # mtoday - focus on today's email (I have a broad view of 'today')
     notmuch search --output=files "tag:inbox AND ( date:today OR date:yesterday )" | msort -r -d -U | mseq -S
 }
 
-mflag() {
+mflag () {
     # mflag - toggle 'important' flag
     mbatchtag "awk '/+flagged/ { sub(/+flagged/,\"-flagged\"); print; next}; !/+flagged/ { printf \"+flagged \";print; next }' " $*
 }
 
-mspam() {
+mspam () {
     # mark as spam (mails tagged spam get moved out of my Maildir Inbox into a spam folder by a utility called afew)
     mbatchtag "sed 's/+inbox/-inbox +spam +missedspam/'" $*
 }
 
-march() {
+march () {
     # mark as archived (mails tagged archive get moved out of my Maildir Inbox by a utility called afew)
     mbatchtag "sed 's/+inbox/-inbox +archive/'" $*
 }
 
-mt() {
+mt () {
     # find all in same thread as this email
     # uses notmuch's threading knowledge, not mblaze's
     mnm `notmuch search --output=threads $(mseq ${*:-.} | mid)`
 }
 
-mbatchtag() {
+mbatchtag () {
     action=$1
     shift
     if [ -t 0 ]; then
