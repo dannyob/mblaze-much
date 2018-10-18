@@ -11,6 +11,9 @@
 <v t="danny.20180916231930.1"><vh>@auto-md README.md</vh></v>
 </v>
 <v t="danny.20180917215709.1"><vh>Development Diary</vh>
+<v t="danny.20181017231755.1"><vh>2018-10-17</vh>
+<v t="danny.20181017231801.1"><vh>Things I've learned</vh></v>
+</v>
 <v t="danny.20181001222640.1"><vh>2018-10-01</vh>
 <v t="danny.20181001222651.1"><vh>Things I've learned</vh></v>
 </v>
@@ -135,5 +138,8 @@ I still haven't really worked out how to do vendor code (or rather use other peo
 <t tx="danny.20181001222808.1" annotate="7d71002855087072696f7269747971014b64550a707269736574646174657102550a323031382d31302d30317103752e" icons="5d71007d71012855026f6e71025505766e6f646571035504747970657104550466696c6571055507796f666673657471064b005508636c656f49636f6e710755013171086805585b0000002f7573722f6c6f63616c2f6c69622f707974686f6e322e372f646973742d7061636b616765732f6c656f2d352e372e322e6465763438362d7079322e372e6567672f6c656f2f49636f6e732f636c656f2f63686b626c6b2e706e677109550478706164710a4b0155057768657265710b550e6265666f7265486561646c696e65710c5507786f6666736574710d4b02550772656c50617468710e580f000000636c656f2f63686b626c6b2e706e67710f75612e"></t>
 <t tx="danny.20181001223655.1">Make vendor-mblaze do something clever other than checking out and making code.
 Use makefile defaults wisely.</t>
+<t tx="danny.20181017231755.1"></t>
+<t tx="danny.20181017231801.1">* checkbashisms is a utility for removing BASH or ZSH additions, so you can write a script that works for all POSIXish shells.
+* Big zsh bash/dash difference:  "One commonly encountered difference is that variables substituted onto the command line are not split into words.  See the description of the shell option SH_WORD_SPLIT in the section `Parameter Expansion' in zshexpn(1)."</t>
 </tnodes>
 </leo_file>
