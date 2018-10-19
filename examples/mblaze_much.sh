@@ -5,6 +5,10 @@
 # my INBOX Maildir, but if something is in my INBOX and tagged "archive" it
 # gets moved into an archive folder. Similarly, mail marked "spam" get moved to
 # a spam folder.
+#
+# This code is designed for zsh, but should work for any POSIX shell. Zsh does
+# not split variables on the command line by default, so there are a few evals
+# in this to force parsing to be the same in zsh and other shells.
 
 mnm () {
     # mnm - mblaze notmuch
@@ -72,10 +76,10 @@ mbatchtag () {
 
 mcp () {
     # run commands on a variety of searches (defaults to giving a count)
-    while read -u9 -n line ; do
-        command=`echo $line| sed 's/#.*$//'`
-        echo -n $command
-        eval "$command | ${*:-wc -l}"
+    while read line <&9; do
+            command=$(printf $line| sed 's/#.*$//')
+            printf $command
+            eval "$command | ${*:-wc -l}"
     done 9<<EOF
 magrep "Precedence:bulk"         # mass mails
 magrep "broadcastSendId:.*"      # mass mails
