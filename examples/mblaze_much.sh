@@ -17,6 +17,7 @@ mid() {
 mnm () {
     # mnm - mblaze notmuch
     # search and return a list of files, suitable for mblaze functions
+    # This is the same as mblaze's msearch in its contrib directory.
     notmuch search --output=files $*
 }
 
@@ -25,6 +26,10 @@ ms () {
     # shortcut to show current email with tags appended
     mshow $*
     mtags .
+}
+
+mrev () {
+    msort ${*:--r} | sponge | mseq -S
 }
 
 nn () {
