@@ -11,6 +11,12 @@
 <v t="danny.20180916231930.1"><vh>@auto-md README.md</vh></v>
 </v>
 <v t="danny.20180917215709.1"><vh>Development Diary</vh>
+<v t="danny.20181027190905.1"><vh>2018-10-27</vh>
+<v t="danny.20181027190911.1"><vh>Things I've learned</vh></v>
+</v>
+<v t="danny.20181026225835.1"><vh>2018-10-26</vh>
+<v t="danny.20181026225841.1"><vh>Things I've learned</vh></v>
+</v>
 <v t="danny.20181017231755.1"><vh>2018-10-17</vh>
 <v t="danny.20181017231801.1"><vh>Things I've learned</vh></v>
 </v>
@@ -141,5 +147,11 @@ Use makefile defaults wisely.</t>
 <t tx="danny.20181017231755.1"></t>
 <t tx="danny.20181017231801.1">* checkbashisms is a utility for removing BASH or ZSH additions, so you can write a script that works for all POSIXish shells.
 * Big zsh bash/dash difference:  "One commonly encountered difference is that variables substituted onto the command line are not split into words.  See the description of the shell option SH_WORD_SPLIT in the section `Parameter Expansion' in zshexpn(1)."</t>
+<t tx="danny.20181026225835.1"></t>
+<t tx="danny.20181026225841.1">I've learned so much about using less as a super-powered pager!
+</t>
+<t tx="danny.20181027190905.1"></t>
+<t tx="danny.20181027190911.1">If you think hard enough, you can replace a C program with a shell script.
+</t>
 </tnodes>
 </leo_file>
