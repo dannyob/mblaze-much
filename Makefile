@@ -1,4 +1,4 @@
-binaries : bin/mtags bin/mid
+binaries : bin/mtags
 
 all: uncrustify lint binaries
 
@@ -16,15 +16,12 @@ uncrustify:
 bin/mtags : src/mtags.c
 	cc src/mtags.c -lnotmuch -o bin/mtags -Ivendor-mblaze vendor-mblaze/blaze822.o vendor-mblaze/mymemmem.o vendor-mblaze/mytimegm.o vendor-mblaze/seq.o vendor-mblaze/slurp.o
 
-bin/mid : src/mid.c
-	cc src/mid.c -lnotmuch -o bin/mid -Ivendor-mblaze vendor-mblaze/blaze822.o vendor-mblaze/mymemmem.o vendor-mblaze/mytimegm.o vendor-mblaze/seq.o vendor-mblaze/slurp.o
-
 lint: lintmd lintman
 
 lintmd:
 	# See https://github.com/igorshubovych/markdownlint-cli and
 	# https://github.com/tcort/markdown-link-check
-	find . -name "*.md" -exec "markdownlint" "{}" ";" -exec "markdown-link-check" "{}" ";"
+	find . -name "vendor-*" -prune -o -name "*.md" -exec "markdownlint" "{}" ";" -exec "markdown-link-check" "{}" ";"
 
 lintman: 
 	mandoc -T lint man/*.1

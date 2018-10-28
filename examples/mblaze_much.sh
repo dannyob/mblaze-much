@@ -10,6 +10,10 @@
 # not split variables on the command line by default, so there are a few evals
 # in this to force parsing to be the same in zsh and other shells.
 
+mid() {
+    mhdr -h Message-Id $* | sed -e 's/"/""/g' -e 's/^</id:"/g' -e 's/>$/"/g'
+}
+
 mnm () {
     # mnm - mblaze notmuch
     # search and return a list of files, suitable for mblaze functions
