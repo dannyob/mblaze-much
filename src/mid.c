@@ -4,9 +4,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 #include <notmuch.h>
+#include "blaze822.h"
+
 char database_path[BUFSIZ];
+notmuch_database_t *db;
 
 int
 find_database_path ()
@@ -39,12 +43,27 @@ print_double_quoted (const char *s)
     putchar ('"');
 }
 
-char encoded_tag[3 * NOTMUCH_TAG_MAX];
-char pathname[4096];
+void
+mid (char *file)
+{
+    notmuch_status_t st;
+    notmuch_message_t *message;
+
+	st = notmuch_database_find_message_by_filename (db, file, &message);
+	if (st != NOTMUCH_STATUS_SUCCESS || message == NULL) {
+	    fprintf (stderr, "Could not open %s\n", file);
+	    exit (EXIT_FAILURE);
+	}
+
+	printf ("id:");
+	print_double_quoted (notmuch_message_get_message_id (message));
+	printf ("\n");
+	notmuch_message_destroy (message);
+}
+
 int
 main (int argc, char **argv)
 {
-    notmuch_database_t *db;
     notmuch_status_t st;
     notmuch_message_t *message;
     notmuch_tags_t *tags;
@@ -63,24 +82,10 @@ main (int argc, char **argv)
 	exit (errno);
     }
 
-    while (fgets (pathname, sizeof pathname, stdin)) {
-	pathname[strcspn (pathname, "\r\n")] = 0; /* chomps off EOL characters */
-	st = notmuch_database_find_message_by_filename (db, pathname, &message);
-	if (st != NOTMUCH_STATUS_SUCCESS || message == NULL) {
-	    fprintf (stderr, "Could not open %s\n", pathname);
-	    exit (EXIT_FAILURE);
-	}
-
-	if (ferror (stdin)) {
-	    perror ("Could not read from input");
-	    exit (errno);
-	}
-
-	printf ("id:");
-	print_double_quoted (notmuch_message_get_message_id (message));
-	printf ("\n");
-	notmuch_message_destroy (message);
-    }
+    if (argc == 1 && isatty(0))
+    blaze822_loop1 (":", mid);
+    else
+    blaze822_loop (argc-1, argv+1, mid);
 
     notmuch_database_close (db);
     exit (EXIT_SUCCESS);

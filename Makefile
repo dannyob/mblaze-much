@@ -17,7 +17,7 @@ bin/mtags : src/mtags.c
 	cc src/mtags.c -lnotmuch -o bin/mtags -Ivendor-mblaze vendor-mblaze/blaze822.o vendor-mblaze/mymemmem.o vendor-mblaze/mytimegm.o vendor-mblaze/seq.o vendor-mblaze/slurp.o
 
 bin/mid : src/mid.c
-	cc src/mid.c -lnotmuch -o bin/mid
+	cc src/mid.c -lnotmuch -o bin/mid -Ivendor-mblaze vendor-mblaze/blaze822.o vendor-mblaze/mymemmem.o vendor-mblaze/mytimegm.o vendor-mblaze/seq.o vendor-mblaze/slurp.o
 
 lint: lintmd lintman
 
