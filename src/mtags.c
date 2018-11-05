@@ -34,7 +34,7 @@ find_database_path ()
 }
 
 /* Hex encode tags (see notmuch-tags(1) )
- * The enc array must three times the the maximum size of the s array.
+ * The enc array must be three times the the maximum size of the s array.
  */
 
 void
@@ -74,6 +74,7 @@ mtag (char *file)
     notmuch_tags_t *tags;
     const char *tag;
 
+    while (*file == ' ') file++;
     st = notmuch_database_find_message_by_filename (db, file, &message);
     if (st != NOTMUCH_STATUS_SUCCESS || message == NULL) {
 	fprintf (stderr, "Could not open %s\n", pathname);
