@@ -72,6 +72,11 @@ mt () {
     mnm `notmuch search --output=threads $(mseq ${*:-.} | mid)`
 }
 
+msf () {
+    # fix missing files in the standard sequence
+    mseq -f | mseq -S
+}
+
 mbatchtag () {
     action=$1
     shift
