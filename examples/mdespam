@@ -1,0 +1,42 @@
+#!/bin/sh
+###
+# mdespam
+###
+# uses SpamAssassin scores to highlight potentially spammy
+# emails, and lets the user change the spam score filter
+# interactively using the '<' and '>' key.
+#
+# TODO: command to mark filtered emails as spam.
+###
+
+whmail=$*
+
+spammier () {
+magrep -po "X-Spam-Status:score=(.[^ ]+)" $whmail \
+    | sed 's/: X-Spam-Status:.*score=/ /' \
+    | awk '{ if ($2 >'$val')  print($1) } '
+}
+
+# from http://web.archive.org/web/20181105045951/https://stackoverflow.com/questions/8725925/how-to-read-just-a-single-character-in-shell-script/30022297
+getch() {
+        old=$(stty -g)
+        stty -icanon -echo min 0 time 50
+        printf '%s' $(dd bs=1 count=1 2>/dev/null)
+        stty $old
+}
+
+val=0
+while (:); do
+    tput reset
+    spammier $val | MBLAZE_PAGER= mscan
+    echo $val
+    c=$(getch)
+    case $c in
+        '<')
+            val=$(($val - 1))
+            ;;
+        '>')
+            val=$(($val + 1))
+            ;;
+    esac
+done
