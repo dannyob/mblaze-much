@@ -1,7 +1,7 @@
-#!env -S /usr/bin/lesskey -o ${HOME}/.mless
+#!env -S /usr/bin/lesskey -o ${HOME}/.muchless
 # mless(1) keybindings
 # Based on https://github.com/chneukirchen/mblaze/blob/master/mlesskey.example
-# to update: lesskey -o ~/.mless ~/.mlesskey.ex
+# to update, run this as an executable script
 Q quit \1
 :cq quit \1
 [ prev-file
@@ -14,13 +14,16 @@ k prev-file
 } quit $
 $ quit $
 G quit $
-a noaction !march .\n
-s noaction !mspam .\n
+a quit a
+f quit f
+s quit s
 I noaction E//scan\n
 \n noaction E\#\n
 H quit H
 N quit N
 R quit R
+r quit r
+X quit X
 k quit k
 d quit d
 \^ quit \^

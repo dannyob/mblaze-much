@@ -1,0 +1,124 @@
+#!/bin/sh
+# muchless [MSG] - less(1)-wrapper around mshow, with notmuch additions
+. $(dirname "$(readlink -f "$0")")/mblaze_much.sh
+colorscan() {
+awk '
+function co(n, c) { e = ENVIRON["MCOLOR_" n]; return e ? e : c }
+function fg(c, s) { return sprintf("\033[38;5;%03dm%s\033[0m", c, s) }
+function so(s) { return sprintf("\033[1m%s\033[0m", s) }
+/^>/ { print so(fg(co("CUR",119), $0)); next }
+/^ *\\_/ { print fg(co("MISS",242), $0); next }
+{ print }'
+}
+
+if [ -n "${NO_COLOR+set}" ]; then
+	colorscan() { cat -; }
+fi
+
+if [ "$1" = --filter ]; then
+	if [ "$2" = //scan ]; then
+		mscan : 2>/dev/null | colorscan
+		exit $?
+	fi
+
+	mseq -C "$2"
+	mscan .-2:.+3 2>/dev/null | colorscan
+	echo
+
+	if ! [ -f "$(mseq -r "$2")" ]; then
+		mseq "$2"
+		exit
+	fi
+	if [ $MLESS_RAW -eq 0 ]; then
+		if [ $MLESS_HTML -eq 1 ]; then
+
+            echo "X-Tags:  $(mtags "$2")"
+			mshow -A text/html "$2"
+		else
+            echo "X-Tags:  $(mtags "$2")"
+			mshow "$2"
+		fi | mcolor
+	else
+		mseq -r $2
+		echo
+		cat "$(mseq -r $2)"
+	fi
+	exit $?
+fi
+
+if [ "$#" -eq 0 ] && ! [ -t 0 ]; then
+	mseq -S >/dev/null
+	set -- :
+fi
+
+if ! [ -t 1 ]; then
+	exec mseq :
+fi
+
+case "$0" in
+	*mnext) set -- +;;
+	*mprev) set -- -;;
+	*) [ "$#" -eq 1 ] && set -- ${1:-.};;
+esac
+
+if [ "$#" -ge 1 ]; then
+	mseq -C "$1"
+fi
+
+nl="
+"
+export MLESS_RAW=0
+export MLESS_HTML=0
+while :; do
+	if [ -f $MBLAZE/muchless ]; then
+		export LESSKEY=$MBLAZE/muchless
+	elif [ -f $HOME/.mblaze/muchless ]; then
+		export LESSKEY=$HOME/.mblaze/muchless
+	elif [ -f $HOME/.muchless ]; then
+		export LESSKEY=$HOME/.muchless
+	fi
+	LESSOPEN="|$0 --filter %s" \
+		less -Ps"mless %f?m (message %i of %m).." -R \
+			"+:e $(mscan -n .)$nl" //scan $(mscan -n :)
+	case "$?" in
+	0|1) exit $?;;
+	36) # $ goto end
+		mseq -C '$' 2>/dev/null
+		;;
+	78) # N go to next unseen message
+		nu=$(magrep -v -m1 :S .:) && mseq -C "$nu"
+		;;
+	107) # k next thread
+		mseq -C "$(mseq .+1: | sed -n '/^[^ <]/{p;q;}')"
+		;;
+	100) # d mark read
+		mflag -S .
+		mseq -f : | mseq -S
+		mseq -C +
+		;;
+	82) # R toggle raw mode
+		MLESS_RAW=$((1-$MLESS_RAW))
+		;;
+	72) # H toggle HTML mode
+		MLESS_HTML=$((1-$MLESS_HTML))
+		;;
+	94) # ^ goto parent
+		mseq -C '.^' 2>/dev/null
+		;;
+    97) # a archive single mail
+        march .
+        ;;
+    88) # X extract file
+        (cd ~/tmp; mshow -x .)
+        ;;
+    114) # r reply
+        mrep .
+        ;;
+    102) # f forward
+        mfwd .
+        ;;
+    115) # s mark as spam single mail
+        mspam .
+        ;;
+	esac
+done
