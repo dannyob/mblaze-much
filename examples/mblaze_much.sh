@@ -32,14 +32,6 @@ mrev () {
     msort ${*:--r} | sponge | mseq -S
 }
 
-nn () {
-    # nn - fast notmuch new
-    # run notmuch and afew quietly and quickly, to respond to file changes made by mblaze
-    # (my notmuch hooks get new mail, unless DONOTSYNC is set)
-    DONOTSYNC=1 afew -t tag:inbox
-    DONOTSYNC=1 afew -m tag:inbox
-}
-
 minbox () {
     # minbox - mblaze my inbox
     # find everything in the notmuch "inbox", and store it in the default sequence
@@ -99,4 +91,33 @@ magrep "Precedence:bulk"         # mass mails
 magrep "broadcastSendId:.*"      # mass mails
 magrep "Feedback-ID:.*"          # mass mails
 EOF
+}
+
+# Some utilies for neomutt, mutt-kz, or another mutt that supports
+# Notmuch virtual folders.
+
+_rawurlencode() {
+  local string="${1}"
+  local strlen=${#string}
+  local encoded=""
+  local pos c o
+  pos=1
+  while [ $pos -le $strlen ] ; do
+     c=$(expr substr "$string" $pos 1)
+     case "$c" in
+        [-_.~a-zA-Z0-9] ) o="${c}" ;;
+        * )               o=$(printf '%%%02x' "'$c")
+     esac
+     encoded="${encoded}${o}"
+     pos=$((pos + 1))
+  done
+  echo "${encoded}"
+}
+
+_mid () {
+        mhdr -h Message-Id $* | sed -e 's/"/""/g' -e 's/^<//g' -e 's/>$//g'
+}
+
+mmutt () {
+    mutteff -f "notmuch:///home/danny/Private/eff_mail/?query=mid:$(_rawurlencode $(_mid .))"
 }
