@@ -6,11 +6,8 @@
 <preferences/>
 <find_panel_settings/>
 <vnodes>
-<v t="danny.20180916211857.3"><vh>Documentation</vh>
-<v t="danny.20180916202018.1"><vh>@auto-md MANIFESTO.md</vh></v>
-<v t="danny.20180916231930.1"><vh>@auto-md README.md</vh></v>
-</v>
 <v t="danny.20180917215709.1"><vh>Development Diary</vh>
+<v t="danny.20181127213438.1"><vh>2018-11-27</vh></v>
 <v t="danny.20181027190905.1"><vh>2018-10-27</vh>
 <v t="danny.20181027190911.1"><vh>Things I've learned</vh></v>
 </v>
@@ -51,6 +48,10 @@
 <v t="danny.20180918002152.1"><vh>Things I've learned</vh></v>
 </v>
 </v>
+<v t="danny.20180916211857.3"><vh>Documentation</vh>
+<v t="danny.20180916202018.1"><vh>@auto-md MANIFESTO.md</vh></v>
+<v t="danny.20180916231930.1"><vh>@auto-md README.md</vh></v>
+</v>
 <v t="danny.20180917220225.1"><vh>Future todos</vh>
 <v t="danny.20180918001828.1"><vh>Write manpage for mtags</vh></v>
 <v t="danny.20180917220237.1"><vh>Write a patch for notmuch to output tags for a filename</vh>
@@ -58,6 +59,10 @@
 </v>
 <v t="danny.20181001222808.1"><vh>Write makefile so that vendor-mblaze is automatically filled out.</vh></v>
 <v t="danny.20181001223655.1"><vh>Make makefile a bit more sane</vh></v>
+<v t="danny.20181127213134.1"><vh>Remove superfluous _mid function</vh></v>
+<v t="danny.20181127213208.1"><vh>Document mdespam in README</vh></v>
+<v t="danny.20181127213222.1"><vh>Give main shell functions man pages (is that mad?)</vh></v>
+<v t="danny.20181127213350.1"><vh>record screencast</vh></v>
 </v>
 </vnodes>
 <tnodes>
@@ -153,5 +158,10 @@ Use makefile defaults wisely.</t>
 <t tx="danny.20181027190905.1"></t>
 <t tx="danny.20181027190911.1">If you think hard enough, you can replace a C program with a shell script.
 </t>
+<t tx="danny.20181127213134.1"></t>
+<t tx="danny.20181127213208.1"></t>
+<t tx="danny.20181127213222.1"></t>
+<t tx="danny.20181127213350.1"></t>
+<t tx="danny.20181127213438.1">Just added some documentation. It still counts!</t>
 </tnodes>
 </leo_file>
