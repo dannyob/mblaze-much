@@ -1,12 +1,4 @@
-# Mblaze for Notmuch
-
-Not yet ready for prime time. For the rough plan, see the [manifesto](MANIFESTO.md).
-
-For mblaze, see <>.
-
-
-Using mblaze with notmuch
-====================
+# Using mblaze with notmuch
 
 [Mblaze](https://github.com/chneukirchen/mblaze) is a set of tools by Leah
 Neukirchen that lets you treat email in the One True Unix way — as files of
@@ -18,7 +10,7 @@ directories that represent email folders.
 [Notmuch](https://notmuchmail.org/) is a separate project for indexing and
 searching Maildirs containing a *lot* of email.
 
-[Mblaze-Much] is a collection of command line tools and shell scripts to tie
+[Mblaze-Much](.) is a collection of command line tools and shell scripts to tie
 mblaze and notmuch together, so that you can quickly search and triage large
 quanties of email. It can cope with mail archives with millions of messates,
 and help handle hundreds of incoming email a day.
@@ -36,5 +28,7 @@ mbatchtag -- add or remove tag on an mblaze sequence
 march -- changes the tags on a sequence so that it is no longer tagged inbox, and is tagged for archiving
 mspam -- changes the tags on a sequence so that it is no longer tagged inbox, and is tagged as spam
 mid -- output the message IDs of an mblaze sequence
+[examples/muchless](examples/muchless) - mblaze's  mless, adapted to show tags and  archive or mark emails as spam
+[examples/muchlesskey.notmuch](examples/muchlesskey.notmuch) - keybindings for muchless
 
 mtags and mnm have man pages, found in [man](man).
