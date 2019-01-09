@@ -85,12 +85,16 @@ mcp () {
     while read line <&9; do
             command=$(printf $line| sed 's/#.*$//')
             printf $command
-            eval "$command | ${*:-wc -l}"
+            eval "$command | tee ~/.mblaze/lastmcp | ${*:-wc -l}"
     done 9<<EOF
 magrep "Precedence:bulk"         # mass mails
 magrep "broadcastSendId:.*"      # mass mails
 magrep "Feedback-ID:.*"          # mass mails
 EOF
+}
+
+mcplast () {
+    eval "${*:-wc -l} < ~/.mblaze/lastmcp"
 }
 
 # Some utilies for neomutt, mutt-kz, or another mutt that supports
