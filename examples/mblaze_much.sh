@@ -10,6 +10,7 @@
 # not split variables on the command line by default, so there are a few evals
 # in this to force parsing to be the same in zsh and other shells.
 
+
 mid() {
     mhdr -h Message-Id $* | sed -e 's/"/""/g' -e 's/^</id:"/g' -e 's/>$/"/g'
 }
@@ -123,5 +124,5 @@ _mid () {
 }
 
 mmutt () {
-    mutteff -f "notmuch:///home/danny/Private/eff_mail/?query=mid:$(_rawurlencode $(_mid .))"
+    mutteff -f "notmuch://`notmuch config get database.path`?query=mid:$(_rawurlencode $(_mid .))"
 }
