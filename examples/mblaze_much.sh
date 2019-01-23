@@ -81,12 +81,12 @@ mbatchtag () {
     fi
 }
 
-mcp () {
-    # run commands on a variety of searches (defaults to giving a count)
-    while read line <&9; do
-            command=$(printf $line| sed 's/#.*$//')
-            printf $command
-            eval "$command | tee ~/.mblaze/lastmcp | ${*:-wc -l}"
+mflist () {
+    # list a count on a set of filters
+    while read -u9 -n line ; do
+        command=`echo $line| sed 's/#.*$//'`
+        echo -n $command "# "
+        eval "$command | ${*:-wc -l}"
     done 9<<EOF
 magrep "Precedence:bulk"         # mass mails
 magrep "broadcastSendId:.*"      # mass mails
@@ -94,8 +94,16 @@ magrep "Feedback-ID:.*"          # mass mails
 EOF
 }
 
-mcplast () {
-    eval "${*:-wc -l} < ~/.mblaze/lastmcp"
+mfp () {
+    # pick a filter and act on it (defaults to a count)
+    command2=`mflist | pick | sed 's/#.*$//'`
+    eval "$command2 | tee ~/.mblaze/lastmfp | ${*:-mscan}"
+}
+
+
+mfplast () {
+    # act on the last mcpp list
+    eval "${*:-wc -l} < ~/.mblaze/lastmfp"
 }
 
 # Some utilies for neomutt, mutt-kz, or another mutt that supports
