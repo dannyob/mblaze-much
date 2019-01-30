@@ -81,12 +81,14 @@ mbatchtag () {
     fi
 }
 
+# mblaze filters -- choose an action from a set of filters
+
 mflist () {
-    # list a count on a set of filters
+    # mflist - list all our filters, with a count of how many mails have been found
     while read -u9 -n line ; do
         command=`echo $line| sed 's/#.*$//'`
         echo -n $command "# "
-        eval "$command | ${*:-wc -l}"
+        $command | wc -l
     done 9<<EOF
 magrep "Precedence:bulk"         # mass mails
 magrep "broadcastSendId:.*"      # mass mails
@@ -94,15 +96,16 @@ magrep "Feedback-ID:.*"          # mass mails
 EOF
 }
 
-mfp () {
-    # pick a filter and act on it (defaults to a count)
+mfpick () {
+    # mfpick use pick(1) to select a filter, and optional do something with it
+    # default action is "mscan" to list the filter
     command2=`mflist | pick | sed 's/#.*$//'`
     eval "$command2 | tee ~/.mblaze/lastmfp | ${*:-mscan}"
 }
 
-
-mfplast () {
-    # act on the last mcpp list
+mflast () {
+    # mflast -- do an action on the last picked filter
+    # default action is count
     eval "${*:-wc -l} < ~/.mblaze/lastmfp"
 }
 
