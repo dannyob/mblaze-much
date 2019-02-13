@@ -22,13 +22,6 @@ mnm () {
     notmuch search --output=files $*
 }
 
-ms () {
-    # ms - mshow with tags
-    # shortcut to show current email with tags appended
-    mshow $*
-    mtags .
-}
-
 mrev () {
     msort ${*:--r} | sponge | mseq -S
 }
