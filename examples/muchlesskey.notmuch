@@ -17,6 +17,7 @@ G quit $
 a quit a
 f quit f
 s quit s
+v quit v
 I noaction E//scan\n
 \n noaction E\#\n
 H quit H

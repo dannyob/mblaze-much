@@ -120,5 +120,14 @@ while :; do
     115) # s mark as spam single mail
         mspam .
         ;;
+    118) # v open HTML in mutt
+        WORKDIR=$(mktemp -d --tmpdir muchlessXXXXXX)
+        if [ "$WORKDIR" = "" -o ! -d "$WORKDIR" ]; then
+          echo "Could not create temp dir"
+          exit 1
+        fi
+        (cd $WORKDIR && xdg-open $(mshow -x . $(mshow -t . | grep "text/html" | sed 's/:.*$//g' )) )
+        (sleep 5 && rm $WORKDIR/* && rmdir $WORKDIR) &
+        ;;
 	esac
 done
