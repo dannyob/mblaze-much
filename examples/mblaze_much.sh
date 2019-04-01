@@ -128,5 +128,6 @@ _mid () {
 }
 
 mmutt () {
+    # Open mbsync's currently selected message in mutt
     mutteff -f "notmuch://`notmuch config get database.path`?query=mid:$(_rawurlencode $(_mid .))"
 }

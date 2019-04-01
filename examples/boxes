@@ -1,0 +1,9 @@
+inbox: tag:inbox
+iteam: tag:inbox AND tag:iteam
+lists: tag:inbox AND tag:lists
+outlists: (tag:inbox AND tag:lists) AND NOT tag:efforg
+unlists: tag:inbox AND NOT tag:lists
+c4ci: subject:c4c AND tag:inbox
+c4c: subject:c4c
+ephem: tag:inbox AND tag:ephemera
+where: tag:inbox AND tag:lists/eff-where
