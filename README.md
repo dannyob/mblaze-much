@@ -1,6 +1,6 @@
 # Mblaze-much: Using mblaze with notmuch
 
-*** I've now ceased working on these tools. **
+## I've now ceased working on these tools.
 
 [Mblaze](https://github.com/chneukirchen/mblaze) is a set of tools by Leah
 Neukirchen that lets you treat email in the One True Unix way — as files of
